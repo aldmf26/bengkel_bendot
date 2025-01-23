@@ -30,7 +30,7 @@
 
     :root {
         /* Primary */
-        --bs-primary: #FFCA43;
+        --bs-primary: #2F318B;
         --bs-primary-rgb: 67, 94, 190;
 
         /* Secondary */
@@ -75,7 +75,7 @@
     .btn-primary {
         background-color: var(--bs-primary) !important;
         border-color: var(--bs-primary) !important;
-        color: black !important;
+        color: rgb(217, 217, 217) !important;
     }
 
     .btn-outline-primary:hover {

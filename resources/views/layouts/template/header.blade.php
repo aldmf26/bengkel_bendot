@@ -2,10 +2,8 @@
     <div class="header-top">
         <div class="container ">
             <div class="logo">
-                <a href="index.html">
-                    {{-- <img src="" alt="Logo"
-                        style="height: 80px !important;"> --}}
-                    PT AGRIKA GATYA ARUM
+                <a href="index.html" class="navbar-brand d-flex align-items-center">
+                    <span class="fw-bold">Bengkel Bendot</span>
                 </a>
             </div>
             <div class="header-top-right">
@@ -22,7 +20,7 @@
                         </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end shadow-lg" aria-labelledby="topbarUserDropdown">
-                        <li><a class="dropdown-item" href="#">{{ Auth::user()->name }}</a></li>
+                        <li><a class="dropdown-item" href="{{route('profile.edit')}}">{{ Auth::user()->name }}</a></li>
 
                         <li>
                             <hr class="dropdown-divider">
@@ -43,7 +41,7 @@
             </div>
         </div>
     </div>
-    <nav class="main-navbar bg-secondary">
+    <nav class="main-navbar bg-primary">
         <div class="container">
 
             @php

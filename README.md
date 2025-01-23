@@ -28,7 +28,7 @@ DB_PASSWORD=
 ```bash
   composer install
   npm install
-  php artisan optimize:clear
+  php artisan storage:link
   php artisan migrate --seed
   npm run dev
 ```

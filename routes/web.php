@@ -8,8 +8,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/tamu', [Hrga1VisitorHealthForm::class, 'tamu']);
-Route::post('/tamu', [Hrga1VisitorHealthForm::class, 'storeTamu'])->name('tamu.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard', ['title' => 'Dashboard']);

@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('hrga9_1kalibrasi', function (Blueprint $table) {
+        Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->integer('item_kalibrasi_id')->index();
-            $table->string('frekuensi');
-            $table->string('rentang');
-            $table->string('resolusi');
-            $table->double('bulan');
-            $table->double('tahun');
-            $table->string('status');
+            $table->string('nama');
+            $table->text('deskripsi')->nullable();
+            $table->decimal('harga', 15, 2);
+            $table->foreignId('id_mekanik')->constrained('mechanics');
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('services');
     }
 };

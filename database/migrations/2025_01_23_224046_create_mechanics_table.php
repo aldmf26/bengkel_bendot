@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('itemkalibrasi', function (Blueprint $table) {
+        Schema::create('mechanics', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('merk');
-            $table->string('nomor_seri');
-            $table->integer('lokasi_id')->index();
+            $table->string('nama');
+            $table->string('telepon');
+            $table->string('spesialisasi')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('mechanics');
     }
 };
