@@ -1,3 +1,0 @@
-<div>
-    ini menu
-</div>

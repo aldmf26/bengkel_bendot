@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('link')->nullable(); // Link menu (optional)
             $table->integer('parent_id')->nullable(); // Parent ID untuk submenu
             $table->integer('order')->default(0); // Urutan menu
+            $table->string('roles')->nullable();
             $table->timestamps();
         });
     }

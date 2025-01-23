@@ -21,11 +21,13 @@ class MenuSeeder extends Seeder
             [
                 'title' => 'Daftar User',
                 'link' => 'user.index',
+                'role' => 'presiden',
                 'parent_id' => $menuAdministrator->id
             ],
             [
                 'title' => 'Role & Permission',
                 'link' => 'role.index',
+                'role' => 'presiden',
                 'parent_id' => $menuAdministrator->id
             ]
         ];

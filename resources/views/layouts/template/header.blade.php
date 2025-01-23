@@ -74,53 +74,29 @@
                     $menus = Menu::whereNull('parent_id')->with('children')->orderBy('order')->get();
                 @endphp
                 @foreach ($menus as $menu)
-                    <li class="menu-item has-sub">
+                    @php
+                        // Cek apakah salah satu submenu aktif
+                        $isActive = $menu->children->pluck('link')->contains($getRouteName);
+                    @endphp
+
+                    <li class="menu-item has-sub {{ $isActive ? 'active' : '' }}">
                         <a href="#" class="menu-link">
                             <span><i class="{{ $menu->icon }}"></i> {{ $menu->title }}</span>
                         </a>
                         @if ($menu->children->isNotEmpty())
-                            <div class="submenu" style="font-size: 13px">
+                            <div class="submenu">
                                 <ul class="submenu-group">
-                                    @foreach ($menu->children as $submenu)
-                                        <li class="submenu-item has-sub">
-                                            <a href="#" class="submenu-link">{{ ucwords(strtolower($submenu->title)) }}</a>
-                                            @if ($submenu->children->isNotEmpty())
-                                                <ul class="subsubmenu">
-                                                    @foreach ($submenu->children as $subsubmenu)
-                                                        <li class="subsubmenu-item">
-                                                            <a href="{{ route($subsubmenu->link) }}"
-                                                                class="subsubmenu-link">{{ ucwords(strtolower($subsubmenu->title)) }}</a>
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
-                                            @endif
-                                        </li>
-                                    @endforeach
+                                    <li class="submenu-item">
+                                        @foreach ($menu->children as $submenu)
+                                            <a href="{{ route($submenu->link) }}"
+                                                class="submenu-link {{ $submenu->link === $getRouteName ? 'active' : '' }}">{{ ucwords(strtolower($submenu->title)) }}</a>
+                                        @endforeach
+                                    </li>
                                 </ul>
                             </div>
                         @endif
                     </li>
                 @endforeach
-
-                <li
-                    class="menu-item {{ in_array($getRouteName, ['user.index', 'role.index']) ? 'active' : '' }} has-sub">
-                    <a href="#" class='menu-link'>
-                        <span><i class="bi bi-people"></i> Administrator</span>
-                    </a>
-                    <div class="submenu ">
-                        <!-- Wrap to submenu-group-wrapper if you want 3-level submenu. Otherwise remove it. -->
-                        <div class="submenu-group-wrapper">
-                            <ul class="submenu-group">
-                                <li class="submenu-item">
-                                    <a href="{{ route('user.index') }}" class='submenu-link'>Daftar
-                                        User</a>
-                                    <a href="{{ route('role.index') }}" class='submenu-link'>Role &
-                                        Permission</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
             </ul>
         </div>
     </nav>
