@@ -5,15 +5,19 @@
 
 <link rel="stylesheet" href="{{ asset('assets') }}/compiled/css/app.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
     integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 {{-- <link rel="stylesheet" href="{{asset('assets')}}/compiled/css/app-dark.css"> --}}
 <link rel="stylesheet" href="{{ asset('assets') }}/compiled/css/iconly.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link href="https://cdn.datatables.net/v/bs5/dt-2.1.8/datatables.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="{{ asset('assets') }}/extensions/toastify-js/src/toastify.css">
+
 
 
 {{-- ttd     --}}
@@ -25,7 +29,7 @@
 
 <style>
     * {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Poppins', sans-serif;
     }
 
     :root {
@@ -75,7 +79,7 @@
     .btn-primary {
         background-color: var(--bs-primary) !important;
         border-color: var(--bs-primary) !important;
-        color: rgb(217, 217, 217) !important;
+        color: rgb(255, 255, 255) !important;
     }
 
     .btn-outline-primary:hover {
@@ -152,7 +156,7 @@
     .nav-active {
         background-color: var(--bs-primary) !important;
         border-color: var(--bs-primary) !important;
-        color: black !important;
+        color: rgb(255, 255, 255) !important;
     }
 
     .btn-xs {

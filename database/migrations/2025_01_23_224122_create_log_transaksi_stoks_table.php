@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('log_transaksi_stoks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_spare_part')->constrained('spareparts');
+            $table->foreignId('id_transaksi')->constrained('transactions');
+            $table->foreignId('id_sparepart')->constrained('spareparts');
             $table->dateTime('tanggal');
             $table->enum('jenis_transaksi', ['penjualan', 'stock_in', 'opname']);
             $table->integer('jumlah');

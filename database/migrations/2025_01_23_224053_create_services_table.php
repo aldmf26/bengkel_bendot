@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->text('deskripsi')->nullable();
+            $table->text('foto')->nullable();
             $table->decimal('harga', 15, 2);
             $table->foreignId('id_mekanik')->constrained('mechanics');
             $table->timestamps();

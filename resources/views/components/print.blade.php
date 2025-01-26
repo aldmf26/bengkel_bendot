@@ -20,7 +20,7 @@
             }
         }
         body {
-            font-family: 'Cambria';
+            font-family: 'Poppins';
         }
         
         .cop_judul {

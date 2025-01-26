@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title }} - AgrikaPOS</title>
+    <title>{{ $title }} - Bengkel Bendot</title>
 
     @include('layouts.template.head')
     @livewireStyles
@@ -37,8 +37,7 @@
                         </nav>
                     @endif
 
-                    <h5>{{ strtolower(ucwords($title)) }}</h5>
-
+                    <h5>{{ ucwords(strtolower($title)) }}</h5>
                 </div>
                 <div class="page-content" style="margin-top: -30px">
                     <x-alert />

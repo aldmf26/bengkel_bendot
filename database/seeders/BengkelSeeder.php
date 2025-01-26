@@ -36,8 +36,8 @@ class BengkelSeeder extends Seeder
         Mechanic::create(['nama' => 'Mekanik B', 'telepon' => '08123456781', 'spesialisasi' => 'Kaki-kaki']);
 
         // Seed Services
-        Service::create(['nama' => 'Servis Rutin', 'deskripsi' => 'Servis berkala untuk mobil', 'harga' => 200000, 'id_mekanik' => 1]);
-        Service::create(['nama' => 'Ganti Oli', 'deskripsi' => 'Penggantian oli mesin', 'harga' => 150000, 'id_mekanik' => 2]);
+        Service::create(['nama' => 'Servis Rutin', 'deskripsi' => 'Servis berkala untuk mobil', 'foto' => 'sparepart/oli.jpg', 'harga' => 200000, 'id_mekanik' => 1]);
+        Service::create(['nama' => 'Ganti Oli', 'deskripsi' => 'Penggantian oli mesin', 'foto' => 'sparepart/oli.jpg', 'harga' => 150000, 'id_mekanik' => 2]);
 
         // Seed Customers
         Customer::create(['nama' => 'Customer A', 'email' => 'customerA@example.com', 'telepon' => '08123456782', 'alamat' => 'Jl. Pelanggan No. 1']);

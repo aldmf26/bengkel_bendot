@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_pelanggan')->constrained('customers');
+            $table->string('no_nota');
             $table->dateTime('tanggal');
             $table->decimal('total_harga', 15, 2);
             $table->enum('metode_pembayaran', ['tunai', 'qris', 'transfer']);

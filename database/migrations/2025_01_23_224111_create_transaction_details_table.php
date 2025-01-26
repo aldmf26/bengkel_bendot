@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('transaction_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_transaksi')->constrained('transactions');
-            $table->foreignId('id_spare_part')->nullable()->constrained('spareparts');
-            $table->foreignId('id_layanan')->nullable()->constrained('services');
+            $table->foreignId('id_sparepart')->nullable()->constrained('spareparts');
+            $table->foreignId('id_service')->nullable()->constrained('services');
             $table->integer('jumlah');
             $table->decimal('harga', 15, 2);
             $table->string('admin');
