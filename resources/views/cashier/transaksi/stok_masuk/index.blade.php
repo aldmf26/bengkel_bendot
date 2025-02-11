@@ -9,10 +9,8 @@
                     <tr>
                         <th>No</th>
                         <th>Tanggal</th>
-                        <th>No Nota</th>
                         <th>Sparepart</th>
                         <th>Jumlah</th>
-                        <th>Keterangan</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -21,13 +19,11 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ tanggal(date('y-m-d', strtotime($d->tanggal))) }}</td>
-                            <td>{{ $d->transaksi->no_nota }}</td>
                             <td>{{ $d->sparepart->nama }}</td>
                             <td>{{ $d->jumlah }}</td>
-                            <td>{{ $d->keterangan }}</td>
                             <td>
                                 @role('presiden')
-                                    <a href="{{ route('transaksi.void', $d->transaksi->no_nota) }}"
+                                    <a href="{{ route('stok_masuk.void_masuk', $d->id) }}"
                                         class="edit btn btn-danger btn-sm"
                                         onclick="return confirm('Apakah Anda yakin ingin menghapus stok keluar ini?')">Void</a>
                                 @endrole

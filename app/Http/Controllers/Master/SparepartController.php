@@ -82,4 +82,36 @@ class SparepartController extends Controller
         $sparepart->delete();
         return redirect()->route($this->viewRedirect)->with('sukses', 'Sparepart Deleted');
     }
+
+    public function laporan()
+    {
+        $sparepart = $this->model::with(['kategori', 'suplier'])->orderBy('id', 'desc')->get();
+        $kategoris = Category::all();
+        $supliers = Supplier::all();
+        
+        $data = [
+            'title' => 'Laporan Sparepart',
+            'sparepart' => $sparepart,
+            'kategoris' => $kategoris,
+            'supliers' => $supliers,
+        ];
+
+        return view("laporan.sparepart.index", $data);
+    }
+
+    public function print()
+    {
+        $sparepart = $this->model::with(['kategori', 'suplier'])->orderBy('id', 'desc')->get();
+        $kategoris = Category::all();
+        $supliers = Supplier::all();
+        
+        $data = [
+            'title' => 'Laporan Sparepart',
+            'sparepart' => $sparepart,
+            'kategoris' => $kategoris,
+            'supliers' => $supliers,
+        ];
+
+        return view("laporan.sparepart.print", $data);
+    }
 }

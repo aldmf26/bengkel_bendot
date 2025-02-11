@@ -19,10 +19,11 @@
                 border-radius: 10px;
             }
         }
+
         body {
             font-family: 'Poppins';
         }
-        
+
         .cop_judul {
             font-size: 14px;
             font-weight: bold;
@@ -68,8 +69,20 @@
             border-left: 1px solid black;
             padding-left: 6px;
         }
+
         .head {
             background-color: #D9D9D9 !important;
+        }
+        thead {
+            background-color: var(--bs-primary);
+            color: white;
+        }
+        table {
+            text-align: center;
+        }
+        td {
+            vertical-align: middle;
+
         }
     </style>
 </head>
@@ -78,18 +91,44 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-3 mt-4">
-                <img style="width: 150px" src="{{ asset('img/logo.jpeg') }}" alt="">
+
+                <img style="width: 100px" src="{{ asset('assets/img/maskot.png') }}" alt="">
             </div>
             <div class="col-6 mt-4">
                 <div class="shapes">
-                    <p class="cop_judul">{{ $title }}</p>
+                    <p class="cop_judul">
+                        <h3 class="text-center">Bengkel Bendot</h3>
+                        <h6 class="text-center">alamat Jl. Hksn Komp.Surya Gemilang No.10, Kota Banjarmasin, Kalimantan Selatan
+                            70124</h6>
+                        <h6 class="text-center">0896-4531-2902</h6>
+                    </p>
                 </div>
             </div>
             <div class="col-3">
-                <p class="cop_text text-sm" style="font-size: 10px">{{ $dok }}</p>
+                <p style="font-size: 12px; font-style: italic" class="text-end ">{{ \Carbon\Carbon::now()->format('d-m-Y H:i') }}</p>
             </div>
         </div>
+        <hr style="border: 1px solid black !important; color:black">
+        <center>
+        <h5>{{ $title }}</h5>
         {{ $slot }}
+    </center>
+        <br>
+        <br>
+        <div style="display: flex; justify-content: space-between">
+            <div style="width: 50%">
+                <p class="text-center">Yang Menerima</p>
+                <br>
+                <br>
+                <p class="text-center">_________________________</p>
+            </div>
+            <div style="width: 50%">
+                <p class="text-center">Yang Menyerahkan</p>
+                <br>
+                <br>
+                <p class="text-center">_________________________</p>
+            </div>
+        </div>
     </div>
 
     <!-- Optional JavaScript; choose one of the two! -->

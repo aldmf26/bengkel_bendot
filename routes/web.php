@@ -27,7 +27,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::controller(OrderController::class)
-    ->prefix('cashier/order')
+    ->prefix('cashier')
     ->name('order.')
     ->group(function () {
         Route::get('/', 'index')->name('index');
@@ -48,7 +48,8 @@ Route::controller(TransaksiController::class)
     ->group(function () {
         Route::get('/', 'stokMasuk')->name('index');
         Route::get('/add', 'add')->name('add');
-        Route::get('/void/{no_nota}', 'void')->name('void');
+        Route::post('/add', 'store')->name('store');
+        Route::get('/void_masuk/{id}', 'void_masuk')->name('void_masuk');
     });
 Route::controller(TransaksiController::class)
     ->prefix('cashier/stok_keluar')
@@ -120,3 +121,4 @@ Route::controller(SuplierController::class)
     });
 
 require __DIR__ . '/auth.php';
+require __DIR__ . '/laporan.php';

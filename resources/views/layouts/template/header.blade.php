@@ -129,12 +129,18 @@
                     </a>
                 </li>
 
+
+
                 @php
                     use App\Models\Menu;
                     $getRouteName = Route::currentRouteName();
 
                     // Ambil menu utama (tanpa parent_id)
-                    $menus = Menu::whereNull('parent_id')->with('children')->orderBy('order')->get();
+                    $menus = Menu::whereNull('parent_id')
+                        ->with('children')
+                        ->whereNot('id', 14)
+                        ->orderBy('order')
+                        ->get();
                 @endphp
                 @foreach ($menus as $menu)
                     @php
@@ -160,6 +166,14 @@
                         @endif
                     </li>
                 @endforeach
+
+                <li class="menu-item {{ 'laporan' == 'laporan' ? 'active' : '' }}">
+                    <a wire:navigate href="{{ route('laporan') }}" class='menu-link'>
+                        <span><i class="bi bi-journal-bookmark
+"></i> Laporan</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
     </nav>

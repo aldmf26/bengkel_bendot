@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Order;
 use App\Http\Controllers\Controller;
 use App\Models\LogTransaksiStok;
 use App\Models\Sparepart;
+use App\Models\Supplier;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
@@ -50,7 +51,7 @@ class TransaksiController extends Controller
 
     public function stokMasuk()
     {
-        $datas = LogTransaksiStok::with(['sparepart', 'transaksi'])->where('jenis_transaksi', 'stock_in')->get();
+        $datas = LogTransaksiStok::with(['sparepart'])->where('jenis_transaksi', 'stock_in')->get();
         $data = [
             'title' => 'Stok Keluar',
             'datas' => $datas
@@ -97,6 +98,72 @@ class TransaksiController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->route('transaksi.index')->with('error', $e->getMessage());
+        }
+    }
+
+    public function add()
+    {
+        $data = [
+            'title' => 'Tambah Stok Masuk',
+            'spareparts' => Sparepart::latest()->get(),
+            'supliers' => Supplier::all()
+        ];
+        return view('cashier.transaksi.stok_masuk.add', $data);
+    }
+
+    public function store(Request $r)
+    {
+        try {
+            DB::beginTransaction();
+
+            $sparepart = Sparepart::find($r->id_sparepart);
+            if ($sparepart) {
+                $stok_sebelum = $sparepart->stok;
+                $sparepart->stok += $r->jumlah;
+                $stok_sesudah = $sparepart->stok;
+                $sparepart->save();
+            }
+
+            LogTransaksiStok::create([
+                'id_transaksi' => 0,
+                'id_sparepart' => $r->id_sparepart,
+                'jumlah' => $r->jumlah,
+                'tanggal' => now(),
+                'stok_sebelum' => $stok_sebelum,
+                'stok_sesudah' => $stok_sesudah,
+                'jenis_transaksi' => 'stock_in',
+                'keterangan' => $r->id_suplier
+            ]);
+
+            DB::commit();
+
+            return redirect()->route('stok_masuk.index')->with('sukses', 'berhasil tambah stok masuk');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('stok_masuk.index')->with('error', $e->getMessage());
+        }
+    }
+
+    public function void_masuk($id)
+    {
+        try {
+            DB::beginTransaction();
+
+            $log = LogTransaksiStok::find($id);
+            $sparepart = Sparepart::find($log->id_sparepart);
+            if ($sparepart) {
+                $sparepart->stok -= $log->jumlah;
+                $sparepart->save();
+            }
+
+            $log->delete();
+
+            DB::commit();
+
+            return redirect()->route('stok_masuk.index')->with('sukses', 'berhasil void stok masuk');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('stok_masuk.index')->with('error', $e->getMessage());
         }
     }
 }
