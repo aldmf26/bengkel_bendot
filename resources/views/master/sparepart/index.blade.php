@@ -77,7 +77,7 @@
             </div>
             <div class="mb-3">
                 <label for="suplier" class="form-label">Pilih Suplier</label>
-                <select class="form-control" id="suplier" name="id_suplier" required>
+                <select class="form-control" id="suplier" name="id_supplier" required>
                     <option value="">Pilih Suplier</option>
                     @foreach ($supliers as $suplier)
                         <option value="{{ $suplier->id }}">{{ $suplier->nama }}</option>
