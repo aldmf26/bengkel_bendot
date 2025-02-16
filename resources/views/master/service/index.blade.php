@@ -45,7 +45,7 @@
 
     <form action="{{ route('service.store') }}" method="post" enctype="multipart/form-data">
         @csrf
-        <x-modal idModal="add" title="Tambah Suplier">
+        <x-modal idModal="add" title="Tambah Service">
             <div class="mb-3">
                 <label for="foto" class="form-label">Upload Foto</label>
                 <input type="file" class="form-control" id="foto" name="foto" required>
@@ -77,7 +77,7 @@
     @foreach ($service as $d)
         <form action="{{ route('service.update', $d->id) }}" method="post" enctype="multipart/form-data">
             @csrf
-            <x-modal idModal="edit{{ $d->id }}" title="Edit Suplier">
+            <x-modal idModal="edit{{ $d->id }}" title="Edit Service">
                 <div class="mb-3">
                     <label for="foto" class="form-label">Upload Foto</label>
                     <input type="file" class="form-control" id="foto" name="foto">

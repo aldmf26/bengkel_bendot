@@ -73,4 +73,27 @@ class CustomerController extends Controller
         ];
         return view('laporan.penjualan_customer.print', $data);
     }
+
+    public function laporan()
+    {
+        $customer = $this->model::orderBy('id', 'desc')->get();
+
+        $data = [
+            'title' => 'Laporan Customer',
+            'customer' => $customer
+        ];
+
+        return view("laporan.customer.index", $data);
+    }
+
+    public function print()
+    {
+        $customer = $this->model::orderBy('id', 'desc')->get();
+        $data = [
+            'title' => 'Laporan Customer',
+            'customer' => $customer,
+        ];
+
+        return view("laporan.customer.print", $data);
+    }
 }

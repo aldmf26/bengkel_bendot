@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Master\CustomerController;
+use App\Http\Controllers\Master\KategoriSparepartController;
 use App\Http\Controllers\Master\MekanikController;
 use App\Http\Controllers\Master\ServiceController;
 use App\Http\Controllers\Master\SparepartController;
@@ -28,7 +29,7 @@ Route::controller(SparepartController::class)
         Route::get('/print', 'printPenjualan')->name('print');
     });
 
-Route::controller(SparepartController::class)
+Route::controller(KategoriSparepartController::class)
     ->prefix('laporan/kategori-sparepart')
     ->name('kategori-sparepart.')
     ->group(function () {

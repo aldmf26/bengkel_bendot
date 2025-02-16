@@ -49,7 +49,7 @@
 
     <form action="{{ route('sparepart.store') }}" method="post" enctype="multipart/form-data">
         @csrf
-        <x-modal idModal="add" title="Tambah Suplier">
+        <x-modal idModal="add" title="Tambah Sparepart">
             <div class="mb-3">
                 <label for="foto" class="form-label">Upload Foto</label>
                 <input type="file" class="form-control" id="foto" name="foto" required>

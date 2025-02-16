@@ -31,7 +31,7 @@
 
     <form action="{{ route('kategori.store') }}" method="post">
         @csrf
-        <x-modal idModal="add" title="Tambah Suplier">
+        <x-modal idModal="add" title="Tambah Kategori Sparepart">
             <div class="mb-3">
                 <label for="nama" class="form-label">Nama</label>
                 <input type="text" class="form-control" id="nama" name="nama" required>
@@ -42,7 +42,7 @@
     @foreach ($kategori as $d)
         <form action="{{ route('kategori.update', $d->id) }}" method="post">
             @csrf
-            <x-modal idModal="edit{{ $d->id }}" title="Edit Suplier">
+            <x-modal idModal="edit{{ $d->id }}" title="Edit Kategori Sparepart">
                 <div class="mb-3">
                     <label for="nama" class="form-label">Nama</label>
                     <input type="text" class="form-control" id="nama" name="nama" value="{{ $d->nama }}" required>

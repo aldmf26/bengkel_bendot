@@ -102,4 +102,27 @@ class ServiceController extends Controller
         ];
         return view('laporan.penjualan_service.print', $data);
     }
+
+    public function laporan()
+    {
+        $service = $this->model::with('mekanik')->orderBy('id', 'desc')->get();
+
+        $data = [
+            'title' => 'Laporan Service',
+            'service' => $service
+        ];
+
+        return view("laporan.service.index", $data);
+    }
+
+    public function print()
+    {
+        $service = $this->model::with('mekanik')->orderBy('id', 'desc')->get();
+        $data = [
+            'title' => 'Laporan Service',
+            'service' => $service,
+        ];
+
+        return view("laporan.service.print", $data);
+    }
 }

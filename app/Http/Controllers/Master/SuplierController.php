@@ -38,4 +38,27 @@ class SuplierController extends Controller
         $this->model::find($id)->delete();
         return redirect()->route($this->viewRedirect)->with('sukses', 'Suplier Deleted');
     }
+
+    public function laporan()
+    {
+        $suplier = $this->model::orderBy('id', 'desc')->get();
+
+        $data = [
+            'title' => 'Laporan Suplier',
+            'suplier' => $suplier
+        ];
+
+        return view("laporan.suplier.index", $data);
+    }
+
+    public function print()
+    {
+        $suplier = $this->model::with('sparepart')->orderBy('id', 'desc')->get();
+        $data = [
+            'title' => 'Laporan Suplier',
+            'suplier' => $suplier,
+        ];
+
+        return view("laporan.suplier.print", $data);
+    }
 }

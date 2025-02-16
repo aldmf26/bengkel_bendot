@@ -38,4 +38,26 @@ class MekanikController extends Controller
         $this->model::find($id)->delete();
         return redirect()->route($this->viewRedirect)->with('sukses', 'Mekanik Deleted');
     }
+
+    public function laporan()
+    {
+        $mekanik = $this->model::orderBy('id', 'desc')->get();
+        $data = [
+            'title' => 'Laporan Mekanik',
+            'mekanik' => $mekanik
+        ];
+
+        return view("laporan.mekanik.index", $data);
+    }
+
+    public function print()
+    {
+        $mekanik = $this->model::with('transactionDetails')->orderBy('id', 'desc')->get();
+        $data = [
+            'title' => 'Laporan Mekanik',
+            'mekanik' => $mekanik,
+        ];
+
+        return view("laporan.mekanik.print", $data);
+    }
 }

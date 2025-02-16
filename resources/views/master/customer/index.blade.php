@@ -37,7 +37,7 @@
 
     <form action="{{ route('customer.store') }}" method="post">
         @csrf
-        <x-modal idModal="add" title="Tambah Suplier">
+        <x-modal idModal="add" title="Tambah Customer">
             <div class="mb-3">
                 <label for="nama" class="form-label">Nama</label>
                 <input type="text" class="form-control" id="nama" name="nama" required>
@@ -60,7 +60,7 @@
     @foreach ($datas as $d)
         <form action="{{ route('customer.update', $d->id) }}" method="post">
             @csrf
-            <x-modal idModal="edit{{ $d->id }}" title="Edit Suplier">
+            <x-modal idModal="edit{{ $d->id }}" title="Edit Customer">
                 <div class="mb-3">
                     <label for="nama" class="form-label">Nama</label>
                     <input type="text" class="form-control" id="nama" name="nama" value="{{ $d->nama }}" required>

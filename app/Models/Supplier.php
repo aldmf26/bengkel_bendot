@@ -8,5 +8,9 @@ class Supplier extends Model
 {
     //
 protected $guarded = [];
+    public function sparepart()
+    {
+        return $this->hasMany(Sparepart::class, 'id_supplier');
+    }
 
 }

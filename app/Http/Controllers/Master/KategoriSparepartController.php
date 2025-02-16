@@ -38,4 +38,26 @@ class KategoriSparepartController extends Controller
         $this->model::find($id)->delete();
         return redirect()->route($this->viewRedirect)->with('sukses', 'Kategori Deleted');
     }
+
+    public function laporan()
+    {
+        $kategori = $this->model::orderBy('id', 'desc')->get();
+        $data = [
+            'title' => 'Kategori Sparepart',
+            'kategori' => $kategori
+        ];
+
+        return view("laporan.kategori_sparepart.index", $data);
+    }
+
+    public function print()
+    {
+        $kategori = $this->model::with('sparepart')->orderBy('id', 'desc')->get();
+        $data = [
+            'title' => 'Laporan Sparepart',
+            'kategori' => $kategori,
+        ];
+
+        return view("laporan.kategori_sparepart.print", $data);
+    }
 }

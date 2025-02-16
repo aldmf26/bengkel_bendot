@@ -53,7 +53,7 @@
                         </div>
                         <div class="float-end">
                             <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                                    href="https://ptagrikagatyaarum.com/">Agrika Gatya Arum</a></p>
+                                    href="https://ptagrikagatyaarum.com/">Bengkel Bendot</a></p>
                         </div>
                     </div>
                 </div>
