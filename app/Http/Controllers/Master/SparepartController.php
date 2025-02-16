@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Sparepart;
 use App\Models\Supplier;
+use App\Models\Transaction;
+use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -113,5 +115,28 @@ class SparepartController extends Controller
         ];
 
         return view("laporan.sparepart.print", $data);
+    }
+
+    public function laporanPenjualan()
+    {
+
+        $data = [
+            'title' => 'Laporan Penjualan Sparepart',
+        ];
+        return view('laporan.penjualan_sparepart.index', $data);
+    }
+    public function printPenjualan(Request $r)
+    {
+        $tgl1 = $r->tgl1;
+        $tgl2 = $r->tgl2;
+        $datas = TransactionDetail::with(['sparepart'])
+                    ->where('id_sparepart', '!=', 0)
+                    ->whereBetween('created_at', [$tgl1, $tgl2])
+                    ->get();
+        $data = [
+            'title' => 'Laporan Penjualan Sparepart',
+            'datas' => $datas
+        ];
+        return view('laporan.penjualan_sparepart.print', $data);
     }
 }

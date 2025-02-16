@@ -166,4 +166,57 @@ class TransaksiController extends Controller
             return redirect()->route('stok_masuk.index')->with('error', $e->getMessage());
         }
     }
+
+    public function laporan()
+    {
+        $data = [
+            'title' => 'Laporan Transaksi'
+        ];
+        return view('laporan.transaksi.index', $data);
+    }
+    public function print()
+    {
+        $transaksi = Transaction::latest()->get();
+        $data = [
+            'title' => 'Laporan Transaksi',
+            'transaksi' => $transaksi
+        ];
+        return view('laporan.transaksi.print', $data);
+    }
+
+    public function laporanStokKeluar()
+    {
+
+        $data = [
+            'title' => 'Laporan Stok Keluar',
+        ];
+        return view('laporan.stok_keluar.index', $data);
+    }
+    public function printStokKeluar()
+    {
+        $datas = LogTransaksiStok::with(['sparepart', 'transaksi'])->where('jenis_transaksi', 'penjualan')->get();
+        $data = [
+            'title' => 'Laporan Stok Keluar',
+            'datas' => $datas
+        ];
+        return view('laporan.stok_keluar.print', $data);
+    }
+
+    public function laporanStokMasuk()
+    {
+
+        $data = [
+            'title' => 'Laporan Stok Masuk',
+        ];
+        return view('laporan.stok_masuk.index', $data);
+    }
+    public function printStokMasuk()
+    {
+        $datas = LogTransaksiStok::with(['sparepart', 'transaksi','suplier'])->where('jenis_transaksi', 'stock_in')->get();
+        $data = [
+            'title' => 'Laporan Stok Masuk',
+            'datas' => $datas
+        ];
+        return view('laporan.stok_masuk.print', $data);
+    }
 }

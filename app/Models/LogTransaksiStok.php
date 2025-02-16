@@ -18,4 +18,9 @@ class LogTransaksiStok extends Model
     {
         return $this->belongsTo(Transaction::class, 'id_transaksi');
     }
+
+    public function suplier()
+    {
+        return $this->belongsTo(Supplier::class, 'keterangan');
+    }
 }

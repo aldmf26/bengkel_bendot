@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Master;
 use App\Http\Controllers\Controller;
 use App\Models\Mechanic;
 use App\Models\Service;
+use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -77,5 +78,28 @@ class ServiceController extends Controller
         }
         $service->delete();
         return redirect()->route($this->viewRedirect)->with('sukses', 'Service Deleted');
+    }
+
+    public function laporanPenjualan()
+    {
+
+        $data = [
+            'title' => 'Laporan Penjualan Service',
+        ];
+        return view('laporan.penjualan_service.index', $data);
+    }
+    public function printPenjualan(Request $r)
+    {
+        $tgl1 = $r->tgl1;
+        $tgl2 = $r->tgl2;
+        $datas = TransactionDetail::with(['service'])
+                    ->where('id_service', '!=', 0)
+                    ->whereBetween('created_at', [$tgl1, $tgl2])
+                    ->get();
+        $data = [
+            'title' => 'Laporan Penjualan Service',
+            'datas' => $datas
+        ];
+        return view('laporan.penjualan_service.print', $data);
     }
 }
