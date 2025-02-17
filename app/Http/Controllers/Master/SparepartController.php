@@ -58,16 +58,12 @@ class SparepartController extends Controller
             DB::beginTransaction();
             $sparepart = $this->model::find($id);
             if ($r->hasFile('foto')) {
-                if (file_exists(storage_path('app/public/' . $sparepart->foto))) {
-                    unlink(storage_path('app/public/' . $sparepart->foto));
-                }
                 $fotoPath = $r->file('foto')->store('sparepart', 'public');
                 $data = $r->input();
                 $data['foto'] = $fotoPath;
-            } else {
-                $data = $r->input();
+                $sparepart->update(['foto' => $fotoPath]);
             }
-            $this->model::find($id)->update($data);
+            $sparepart->update($r->except('foto'));
             DB::commit();
             return redirect()->route($this->viewRedirect)->with('sukses', 'Sparepart Updated');
         } catch (\Exception $e) {

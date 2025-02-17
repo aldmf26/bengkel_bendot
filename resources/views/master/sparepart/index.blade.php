@@ -36,6 +36,7 @@
                             <td>
                                 <a href="#" data-bs-toggle="modal" data-bs-target="#edit{{ $d->id }}"
                                     class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+
                                 <a href="{{ route('sparepart.destroy', $d->id) }}" class="btn btn-danger btn-sm"
                                     onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i
                                         class="fas fa-trash"></i></a>
@@ -87,19 +88,17 @@
         </x-modal>
     </form>
 
-    {{-- @foreach ($sparepart as $d)
+    @foreach ($sparepart as $d)
         <form action="{{ route('sparepart.update', $d->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             <x-modal idModal="edit{{ $d->id }}" title="Edit Suplier">
                 <div class="mb-3">
-                    <label for="foto" class="form-label">Upload Foto</label>
-                    <input type="file" class="form-control" id="foto" name="foto">
-                    <img src="{{ Storage::url($d->foto) }}" width="100" height="100" class="mt-2">
+                    <label for="foto" class="form-label">Upload Foto (Kosongkan jika tidak ingin mengubah)</label>
+                    <input type="file" class="form-control" id="foto" name="foto" >
                 </div>
                 <div class="mb-3">
                     <label for="nama" class="form-label">Nama</label>
-                    <input type="text" class="form-control" id="nama" name="nama"
-                        value="{{ $d->nama }}" required>
+                    <input type="text" class="form-control" id="nama" name="nama" value="{{ $d->nama }}" required>
                 </div>
                 <div class="mb-3">
                     <label for="deskripsi" class="form-label">Deskripsi</label>
@@ -107,21 +106,27 @@
                 </div>
                 <div class="mb-3">
                     <label for="harga" class="form-label">Harga</label>
-                    <input type="number" class="form-control" id="harga" name="harga"
-                        value="{{ $d->harga }}" required>
+                    <input type="number" class="form-control" id="harga" name="harga" value="{{ $d->harga }}" required>
                 </div>
                 <div class="mb-3">
-                    <label for="mekanik" class="form-label">Pilih Mekanik</label>
-                    <select class="form-control" id="mekanik" name="id_mekanik" required>
-                        <option value="">Pilih Mekanik</option>
-                        @foreach ($mekaniks as $mekanik)
-                            <option value="{{ $mekanik->id }}" {{ $d->id_mekanik == $mekanik->id ? 'selected' : '' }}>
-                                {{ $mekanik->nama }}
-                            </option>
+                    <label for="kategori" class="form-label">Pilih Kategori</label>
+                    <select class="form-control" id="kategori" name="id_kategori" required>
+                        <option value="">Pilih Kategori</option>
+                        @foreach ($kategoris as $kategori)
+                            <option value="{{ $kategori->id }}" {{ $kategori->id == $d->id_kategori ? 'selected' : '' }}>{{ $kategori->nama }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="suplier" class="form-label">Pilih Suplier</label>
+                    <select class="form-control" id="suplier" name="id_supplier" required>
+                        <option value="">Pilih Suplier</option>
+                        @foreach ($supliers as $suplier)
+                            <option value="{{ $suplier->id }}" {{ $suplier->id == $d->id_supplier ? 'selected' : '' }}>{{ $suplier->nama }}</option>
                         @endforeach
                     </select>
                 </div>
             </x-modal>
         </form>
-    @endforeach --}}
+    @endforeach
 </x-app-layout>
