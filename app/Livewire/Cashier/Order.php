@@ -26,7 +26,13 @@ class Order extends Component
         $produks_count = '',
         $selectedLayanan = '2',
         $selectedKategori = 'Makanan';
-
+    public function alert($type, $message)
+    {
+        $this->dispatch('showAlert', [
+            'type' => $type,
+            'message' => $message
+        ]);
+    }
     public function mount()
     {
         $this->selectedKategori = 0;
