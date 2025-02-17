@@ -235,7 +235,7 @@
                                             <div class="mb-3">
                                                 <label for="email" class="form-label">Email</label>
                                                 <input type="email" class="form-control" id="email"
-                                                    name="customer[email]" wire:model="customerAdd.email" required />
+                                                    name="customer[email]" wire:model="customerAdd.email" />
                                                 @error('customerAdd.email')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror

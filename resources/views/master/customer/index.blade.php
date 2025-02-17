@@ -44,7 +44,7 @@
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="text" class="form-control" id="email" name="email" required>
+                <input type="text" class="form-control" id="email" name="email">
             </div>
             <div class="mb-3">
                 <label for="telepon" class="form-label">Telepon</label>
@@ -67,7 +67,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="text" class="form-control" id="email" name="email" value="{{ $d->email }}" required>
+                    <input type="text" class="form-control" id="email" name="email" value="{{ $d->email }}">
                 </div>
                 <div class="mb-3">
                     <label for="telepon" class="form-label">Telepon</label>

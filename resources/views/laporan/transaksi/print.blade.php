@@ -3,7 +3,7 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>Tanggal</th>
+                <th>Tanggal / Jam</th>
                 <th>No Nota</th>
                 <th>Total Harga</th>
                 <th>Metode</th>
@@ -16,7 +16,7 @@
             @foreach ($transaksi as $d)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ tanggal(date('Y-m-d', strtotime($d->tanggal))) }}</td>
+                    <td>{{ \Carbon\Carbon::parse($d->tanggal)->format('d-m-Y h:i A') }}</td>
                     <td>{{ $d->no_nota }}</td>
                     <td align="right">{{ number_format($d->total_harga, 0) }}</td>
                     <td>{{ $d->metode_pembayaran }}</td>
